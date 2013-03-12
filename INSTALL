@@ -1,0 +1,34 @@
+Race Game
+Version 0.5
+by foobar and judeo
+
+Copyleft (GPL) 2002:
+foobar
+judeo
+
+This package has a crappy Makefile, but will built on most
+Linux systems where the dependancies are present.
+
+Have successfully built on the following systems:
+* Debian 3.0 x86, 2.4.18 kernel, NVidiaGL 2960
+* RedHat 7.2 x86, 2.4.? kernel, NVidiaGL 2820
+* Others Wanted
+
+################
+# Dependencies #
+################
+SDL and Devel (http://www.libsdl.org)
+SDL_mixer and Devel (http://www.libsdl.org/projects/SDL_mixer)
+SDL_image and Devel (http://www.libsdl.org/projects/SDL_image)
+OpenGL (gl.h and glu.h)
+a working compiler
+
+On a mac with homebrew run: brew install sdl sdl_mixer sdl_image
+On ubuntu run: apt-get install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-image1.2-dev freeglut3-dev
+
+##################
+# Install Guide: #
+##################
+To build on Linux/FreeBSD/OSX/Cygwin systems type:
+  make
+  ./race
