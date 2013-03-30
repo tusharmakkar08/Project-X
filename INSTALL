@@ -1,10 +1,9 @@
-Race Game
-Version 0.5
-by foobar and judeo
-
-Copyleft (GPL) 2002:
-foobar
-judeo
+Project X 
+Race Game Version 1.0
+BY:
+tusharmakkar08
+sayan_666
+(The Anonymous)
 
 This package has a crappy Makefile, but will built on most
 Linux systems where the dependancies are present.

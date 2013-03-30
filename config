@@ -6,7 +6,7 @@
 fullscreen = 0
 
 # Screen Resolution Width
-xres = 1024
+xres = 1366
 
 # Screen Resolution Height
 yres = 768
