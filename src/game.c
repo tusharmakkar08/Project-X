@@ -18,7 +18,7 @@ float fps;						/* Initial FPS (Stops divide by 0) */
 float rotplus;
 
 int initgame(){
-  loadtexture("all",		 "pz.jpg",	4,0,8);
+  loadtexture("all",		 "px.jpg",	4,0,8);
   loadtexture("all",		 "speed.jpg",	4,0,11);
   loadtexture(course[loadc].dir, "lf.jpg",	4,0,2);
   loadtexture(course[loadc].dir, "rt.jpg",	4,0,3);
@@ -50,7 +50,7 @@ int initgame(){
 }
 
 int skybox(float width, float height, float length){
-  float x=-500,y=-height/2,z=-500;
+  float x=-100,y=-height/10,z=-100;
   int   i,j,vi;
  
   float sb_vertices[8][3] = {
@@ -123,6 +123,7 @@ int gamedraw(void){
   drawmap(&course[loadc]);
 
   /* Draw the Ship */
+	if(tushar==0)
   ship();
 
   /* Draw The HUD Items */

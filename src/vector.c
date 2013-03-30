@@ -2,7 +2,7 @@
 #include "vector.h"
 
 /******************************************
- * foobar's phj34rsome vector library     *
+ * Anonymous's vector library     *
  *                                        *
  * posvector:                             *
  * Make a position vector from two points *

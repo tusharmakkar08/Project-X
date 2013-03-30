@@ -4,7 +4,7 @@
 
 int fontbuild(void){
   float cx,cy;
-  
+
   base = glGenLists(256);
   for (i=0; i<256; i++){
     cx = 1-(float)(i%16) / 16.0f;

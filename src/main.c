@@ -5,6 +5,14 @@
 #include "game.h"
 #include "fifo.h"
 #include "font.h"
+#include "global.h"
+#include "menu.h"
+#include "main.h"
+#include "font.h"
+#include "textures.h"
+#include "audio.h"
+#include "ortho.h"
+#include <time.h>
 #include "messages.h"
 
 void killgame(int returnCode){
@@ -61,22 +69,26 @@ int events(void){
 int main(int argc, char **argv){
 
   /* Load me from a text file */
-  course[0].dir		= "desert";
-  course[0].name	= "Canyon Racer";
-  course[0].description	= "A scenic drive through the canyons of Fooland";
+  course[3].dir		= "desert";
+  course[3].name	= "Canyon Racer";
+  course[3].description	= "A scenic drive through the canyons of X-land";
   
-  course[1].dir		= "sea";
-  course[1].name	= "Dune Derby";
-  course[1].description = "A frantic seaside race between the dunes.";
+  course[2].dir		= "sea";
+  course[2].name	= "Dune Derby";
+  course[2].description = "A frantic seaside race between the dunes.";
   
-  course[2].dir		= "city";
-  course[2].name	= "City Speed";
-  course[2].description = "Speedy dash around the city of Foobopolis";
+  course[0].dir		= "city";
+  course[0].name	= "City Speed";
+  course[0].description = "Speedy dash around the city of Xopolis";
 
-  printf("%s version %s\nCopyleft foobar and judeo (See COPYING for info)\n",TITLE,VERSION);
+ course[1].dir="space";
+course[1].name="Space Adventure";
+course[1].description="awesome journey in space";
+
+  printf("%s version %s\nCopyleft sayan_666 and tusharmakkar08 (See COPYING for info)\n",TITLE,VERSION);
 
   loadconfig("config");
-  
+
   if(!initsdl())	error("SDL Loading Failed");
   else			printf("  Loaded: SDL\n");
   
@@ -95,7 +107,7 @@ int main(int argc, char **argv){
   else			printf("  Loaded: Menu\n");
 
   printf("Initial Loading Complete\n\n");
-  
+
   /* Draw the Screen! */
   while (!done){
     /* Draw The Game */
@@ -121,3 +133,4 @@ int main(int argc, char **argv){
   return 0;
   
 }
+
