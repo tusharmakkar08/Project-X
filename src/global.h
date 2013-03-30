@@ -92,6 +92,7 @@ int		yres;
 int		fullscreen;
 int 		tushar;
 int 		sayan;
+int 		dist;
 int		bpp;
 int		debug;
 int		audio;

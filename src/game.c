@@ -218,8 +218,8 @@ int gamemove(void){
   float hover   = sin(2*(SDL_GetTicks()/1000.0));
 
   /* Player Constants */
-  player.maxvel = 1800 / scale;				/* Maximum Velocity */
-  player.accel  = 5    / scale * adjust;		/* Acceleration */
+  player.maxvel = 2300 / scale;				/* Maximum Velocity */
+  player.accel  = 3    / scale * adjust;		/* Acceleration */
   player.rotmax = 360  / scale;				/* Maximum Rotational Velocity */
   player.rotacc = 10   / scale * adjust;		/* Rotational Acceleration */
 

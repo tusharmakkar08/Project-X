@@ -21,10 +21,19 @@ menu = 1;
   loadtexture("all","font.png",		4,0,0);
   loadtexture("all","fontoutline.png",	4,0,12);
 if(!sayan)
+{
   loadtexture("all","menu.jpg",		4,0,1);
-else
+initmenu();
+}else if(sayan==1)
+{
 loadtexture("all","lose.jpg",4,0,1);
-  initmenu();
+initmenu1();
+}
+else if(sayan==2)
+{
+loadtexture("all","win.jpg",4,0,1);
+initmenu2();
+}  
   
   return 1;
 }
@@ -32,6 +41,18 @@ loadtexture("all","lose.jpg",4,0,1);
 int initmenu(void){
 
   playmusic("data/music/sensation.mp3");
+  
+  return 1;
+}
+int initmenu1(void){
+
+  playmusic("data/music/Lose.mp3");
+  
+  return 1;
+}
+int initmenu2(void){
+
+  playmusic("data/music/Win.mp3");
   
   return 1;
 }
