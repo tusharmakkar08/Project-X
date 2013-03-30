@@ -1,23 +1,11 @@
-Race Game
-Version 0.5
-by foobar and judeo
+Project X
+Race Game Version 1.0
+By:
+tusharmakkar08
+sayan_666
+(the anonymous) 
 
-Copyleft (GPL) 2002 (See COPYING for details):
-foobar
-judeo
-
-Music by:
-GrayZ (Sensation [NG cut])
-djhoohaa (Get your Growler out!)
-
-############
-# WANTED!! #
-############
-
-o Bug Testers
-o Level Designers
-o Feature Suggestions
-o All Comments
+It is the modified version of game made by judio and foobar
 
 ###############
 # Readme File #
@@ -115,4 +103,3 @@ These keys can be changed by editing the config file, which
 is fairly self explanatory.
 
 Have fun 
-	- foobar
