@@ -110,6 +110,13 @@ int end()
       menudraw1();
 	return 1;
 }
+int end1()
+{
+	sayan=2;
+	menukeys();    
+      menudraw1();
+	return 1;
+}
 
 
 int timer(){
@@ -125,11 +132,25 @@ int timer(){
   minutes    = (int)  (elapsed)             / 60;
   seconds    = (int)  (elapsed)             % 60;
    hundredths = (int)  (elapsed * 100 + 0.5) % 100;
-   if(seconds>=25)
+   if((seconds>=40)&&(dist<82000))
 	{
+	printf("You Lose\n");
+	dist=0;
 	end();		
 	return 1;
 	}
+if((dist>=82000)&&(seconds>=40))
+{
+	printf("You win\n");
+	dist=0;
+	end1();
+	return 1;
+}
+if(player.vel>=0)
+	dist+=player.vel*12;
+else
+dist-=player.vel*12;
+//printf("Lol %d\n",dist);
    if(hundredths < 10)
      sprintf(hunsec,"0%i",hundredths);
    else
