@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 
 #if defined(__APPLE__)
 # include <OpenGL/gl.h>
@@ -18,8 +19,8 @@
 #include "SDL_image.h"
 #include "SDL_mixer.h"
 
-#define TITLE		"Race Game"
-#define VERSION		"0.5"
+#define TITLE		"Project X"
+#define VERSION		"1.00"
 #define NUM_TEXTURES	14				/* Number of textures to load */
 #define radtodeg	57.295779513			/* 180 / pi */
 #define degtorad	0.0174532925			/* pi / 180 */
@@ -29,7 +30,7 @@
 #define YSCALE		200
 #define ZSCALE		50
 #define YSHIFT		20
-#define COURSES		3
+#define COURSES		4
 
 typedef unsigned char  byte;
 typedef unsigned short word;
@@ -89,6 +90,8 @@ typedef struct{
 int		xres;
 int		yres;
 int		fullscreen;
+int 		tushar;
+int 		sayan;
 int		bpp;
 int		debug;
 int		audio;
