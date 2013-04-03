@@ -71,21 +71,21 @@ int main(int argc, char **argv){
   /* Load me from a text file */
   course[3].dir		= "desert";
   course[3].name	= "Canyon Racer";
-  course[3].description	= "A scenic drive through the canyons of X-land";
+  course[3].description	= "A scenic drive through the canyons of NITK Surathkal";
   
   course[2].dir		= "sea";
   course[2].name	= "Dune Derby";
-  course[2].description = "A frantic seaside race between the dunes.";
+  course[2].description = "A frantic seaside race between the dunes on the NITK beach.";
   
   course[0].dir		= "city";
   course[0].name	= "City Speed";
-  course[0].description = "Speedy dash around the city of Xopolis";
+  course[0].description = "Speedy dash around the city of NITK Surathkal";
 
  course[1].dir="space";
 course[1].name="Space Adventure";
 course[1].description="awesome journey in space";
 
-  printf("%s version %s\nCopyleft sayan_666 and tusharmakkar08 (See COPYING for info)\n",TITLE,VERSION);
+  printf("%s version %s\nCopyleft sayan_666 and tusharmakkar08 \n",TITLE,VERSION);
 
   loadconfig("config");
 

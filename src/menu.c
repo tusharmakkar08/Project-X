@@ -6,7 +6,7 @@
 #include "audio.h"
 #include "ortho.h"
 #include <time.h>
-#define MENU_ITEMS	7
+#define MENU_ITEMS	6
 #define RES_ITEMS	3
 
 char *menulist[20];
@@ -68,12 +68,12 @@ loadmenu();
   else
     menulist[2] = "Windowed";
 
-  sprintf(res,"%ix%i",xres,yres);
-  menulist[3] = res;
+  //sprintf(res,"%ix%i",xres,yres);
+// menulist[3] = res;
   
-  menulist[4] = "Exit Game";
-menulist[5]="First Person";
-menulist[6]="Third person";
+  menulist[5] = "Exit Game";
+menulist[3]="First Person";
+menulist[4]="Third person";
   
   orthosetup();
     glBindTexture(GL_TEXTURE_2D, texture[1]);
@@ -122,12 +122,12 @@ int menudraw(void){
   else
     menulist[2] = "Windowed";
 
-  sprintf(res,"%ix%i",xres,yres);
-  menulist[3] = res;
+  //sprintf(res,"%ix%i",xres,yres);
+  //menulist[3] = res;
   
-  menulist[4] = "Exit Game";
-menulist[5]="Third Person";
-menulist[6]="First person";
+  menulist[5] = "Exit Game";
+menulist[4]="Third Person";
+menulist[3]="First person";
   
   orthosetup();
     glBindTexture(GL_TEXTURE_2D, texture[1]);
@@ -150,9 +150,9 @@ menulist[6]="First person";
     fontprint(xres/2-78, yres-128 - (25*menuitem), "o",0,0.5,0);
 
     glColor3f(0.0f, 0.0f, 1.0f);
-    for(x=0; x<MENU_ITEMS; x++)
-      fontprint(xres/2 - 60, yres-130 - (25*x), menulist[x],0,0.5,0);
-
+    for(x=0; x<MENU_ITEMS; x++){
+     fontprint(xres/2 - 60, yres-130 - (25*x), menulist[x],0,0.5,0);
+}
     glColor3f(1.0f, 1.0f, 1.0f);
     for(x=0; x<MENU_ITEMS; x++)
       fontprint(xres/2 - 58, yres-128 - (25*x), menulist[x],0,0.5,0);
@@ -179,10 +179,12 @@ int menukeys(void){
 	        menu = 2;
 		newgame = 1;
 		break;
-	      case 4:
+	      case 5:
 	        killgame(1);
 		break;
-		case 6:
+		case 4:tushar=0;
+break;
+		case 3:
 		tushar=1;
 		break;
 	      default:
