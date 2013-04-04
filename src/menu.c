@@ -8,7 +8,7 @@
 #include <time.h>
 #define MENU_ITEMS	6
 #define RES_ITEMS	3
-
+int tushar=1;
 char *menulist[20];
 int   menuitem = 0;
 char  res[9];

@@ -55,15 +55,15 @@ int speedo(float speed){
 }
 
 int firstperson(){
-  /* Speed Barchart */
+  /* First person Cockpit view */
   orthosetup();
 glTranslatef(xres-120, 10, 0);
     glBindTexture(GL_TEXTURE_2D, texture[14]);
     glBegin(GL_QUADS);
-      glTexCoord2f(0.0f,0.0f);	glVertex2f(300,0);
-      glTexCoord2f(0.0f,1.0f);	glVertex2f(300,300);
-      glTexCoord2f(1.0f,1.0f);	glVertex2f(-xres,300);
-      glTexCoord2f(1.0f,0.0f);	glVertex2f(-xres,0);
+      glTexCoord2f(0.0f,0.0f);	glVertex2f(300,-10);
+      glTexCoord2f(0.0f,1.0f);	glVertex2f(300,800);
+      glTexCoord2f(1.0f,1.0f);	glVertex2f(-xres,800);
+      glTexCoord2f(1.0f,0.0f);	glVertex2f(-xres,-10);
     glEnd();
   orthoreset();
   return 1;
@@ -96,9 +96,9 @@ int radar(int range){
   orthosetup();
     glTranslatef(60, yres-60, 0);
     glColor4f( 0.0f, 1.0f, 0.0f, 0.5f );
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 if(!tushar)
 {
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     glBindTexture(GL_TEXTURE_2D, texture[13]);
     glBegin(GL_QUADS);
@@ -108,25 +108,31 @@ glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
       glTexCoord2f(dx,ay);	glVertex2f(-50, 50);
     glEnd();
     glDisable(GL_BLEND);
-}
-if(tushar)
-{
-glBlendFunc(GL_ONE, GL_ONE);
-    glEnable(GL_BLEND);
-    glBindTexture(GL_TEXTURE_2D, texture[13]);
-    glBegin(GL_QUADS);
-      glTexCoord2f(ax,dy);	glVertex2f(xres/2-50,-500-50);
-      glTexCoord2f(bx,cy);	glVertex2f(xres/2+50,-500-50);
-      glTexCoord2f(cx,by);	glVertex2f(xres/2+50, -500+50);
-      glTexCoord2f(dx,ay);	glVertex2f(xres/2-50,-500+50);
-    glEnd();
-    glDisable(GL_BLEND);
-}
-    glColor4fv(white);
+	glColor4fv(white);
     glBegin(GL_LINES);
       glVertex2d(0, cos(degtorad*-player.rot)*-5);
       glVertex2d(sin(degtorad*-player.rot)* 5, cos(degtorad*-player.rot)* 5);
     glEnd();
+}
+if(tushar)
+{
+	
+    glEnable(GL_BLEND);
+    glBindTexture(GL_TEXTURE_2D, texture[13]);
+    glBegin(GL_QUADS);
+      glTexCoord2f(ax,dy);	glVertex2f(xres/2-150,-575-100);
+      glTexCoord2f(bx,cy);	glVertex2f(xres/2+100,-570-100);
+      glTexCoord2f(cx,by);	glVertex2f(xres/2+100, -570+100);
+      glTexCoord2f(dx,ay);	glVertex2f(xres/2-150,-570+100);
+    glEnd();
+    glDisable(GL_BLEND);
+	glColor4fv(white);
+      glBegin(GL_LINES);
+      glVertex2d(xres/2, -570+cos(degtorad*-player.rot)*-5);
+      glVertex2d(xres/2+sin(degtorad*-player.rot)* 5, -570+cos(degtorad*-player.rot)* 5);
+    glEnd();
+}
+    
 
   orthoreset();
   return 1;
@@ -155,11 +161,20 @@ int timer(){
    int   hundredths = 0;
    char  minsec[5];
    char  hunsec[5];
+   char  st[30];
+   char ts[100];
    
    elapsed    = (float)(timenow - timestart) / 1000;
   minutes    = (int)  (elapsed)             / 60;
   seconds    = (int)  (elapsed)             % 60;
    hundredths = (int)  (elapsed * 100 + 0.5) % 100;
+	if(flag)
+{
+	flag=0;
+	timestart=timenow;
+	minutes=seconds=hundredths=0;
+	player.vel=0;
+}
    if((seconds>=40)&&(dist<82000))
 	{
 	printf("You Lose\n");
@@ -167,7 +182,7 @@ int timer(){
 	end();		
 	return 1;
 	}
-if((dist>=82000)&&(seconds>=40))
+if(dist>=82000)
 {
 	printf("You win\n");
 	dist=0;
@@ -178,6 +193,20 @@ if(player.vel>=0)
 	dist+=player.vel*12;
 else
 dist-=player.vel*12;
+if(player.y>=60){
+sprintf(ts,"Vehicle Off Track !!!");
+glEnable(GL_BLEND);
+     fontprint(xres-(30*20)-300,yres-150,ts,1,1,1);
+   glDisable(GL_BLEND);
+glColor4fv(blue);
+if(player.vel>=0)
+	dist-=player.vel*24;
+else
+dist+=player.vel*24;}
+if(player.y<60)
+glColor4fv(white);
+dist1=82000-dist;
+sprintf(st,"Distance Left : %d m",dist1/100);
 //printf("Lol %d\n",dist);
    if(hundredths < 10)
      sprintf(hunsec,"0%d",hundredths);
@@ -185,17 +214,23 @@ dist-=player.vel*12;
      sprintf(hunsec,"%d",hundredths);
    
    if (minutes < 10 && seconds < 10)
-     sprintf(minsec,"0%d:0%d",minutes,seconds);
+     sprintf(minsec,"0%d:%d",minutes,40-seconds);
    else if(minutes < 10 && seconds >= 10)
-     sprintf(minsec,"0%d:%d",minutes,seconds);  
+     sprintf(minsec,"0%d:%d",minutes,40-seconds);  
    else if(minutes >= 10 && seconds < 10)
-     sprintf(minsec,"%d:0%d",minutes,seconds);
+     sprintf(minsec,"%d:0%d",minutes,40-seconds);
    else
-     sprintf(minsec,"%d:%d",minutes,seconds);
-   
+     sprintf(minsec,"%d:%d",minutes,40-seconds);
+   if(seconds>=30){
+	if(seconds%2)
+		glColor4fv(red);
+	else
+		glColor4fv(white);
+}
    glEnable(GL_BLEND);
      fontprint(xres - (7*20), yres-32, minsec, 1,1,1);
      fontprint(xres - (2*20)+5, yres-18, hunsec, 1,0.5,1);
+     fontprint(xres-(30*20)-300,yres-50,st,1,1,1);
    glDisable(GL_BLEND);
 
   return 1;
