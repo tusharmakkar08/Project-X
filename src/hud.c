@@ -66,8 +66,7 @@ int fpscount(){
 }
 
 int radar(int range){
-
-  float x,y;
+/*  float x,y;
   float ax,bx,cx,dx;
   float ay,by,cy,dy;
 
@@ -101,7 +100,7 @@ int radar(int range){
     glEnd();
 
   orthoreset();
-  return 1;
+  */return 1;
 }
 int end()
 {
@@ -152,18 +151,18 @@ else
 dist-=player.vel*12;
 //printf("Lol %d\n",dist);
    if(hundredths < 10)
-     sprintf(hunsec,"0%i",hundredths);
+     sprintf(hunsec,"0%d",hundredths);
    else
-     sprintf(hunsec,"%i",hundredths);
+     sprintf(hunsec,"%d",hundredths);
    
    if (minutes < 10 && seconds < 10)
-     sprintf(minsec,"0%i:0%i",minutes,seconds);
+     sprintf(minsec,"0%d:0%d",minutes,seconds);
    else if(minutes < 10 && seconds >= 10)
-     sprintf(minsec,"0%i:%i",minutes,seconds);  
+     sprintf(minsec,"0%d:%d",minutes,seconds);  
    else if(minutes >= 10 && seconds < 10)
-     sprintf(minsec,"%i:0%i",minutes,seconds);
+     sprintf(minsec,"%d:0%d",minutes,seconds);
    else
-     sprintf(minsec,"%i:%i",minutes,seconds);
+     sprintf(minsec,"%d:%d",minutes,seconds);
    
    glEnable(GL_BLEND);
      fontprint(xres - (7*20), yres-32, minsec, 1,1,1);
