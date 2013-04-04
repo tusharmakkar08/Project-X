@@ -93,10 +93,12 @@ int		fullscreen;
 int 		tushar;
 int 		sayan;
 int 		dist;
+int 		dist1;
 int		bpp;
 int		debug;
 int		audio;
 int		showfps;
+int 		flag;
 
 int		loadc;
 int		timestart;

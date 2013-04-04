@@ -28,7 +28,7 @@ int initgame(){
   loadtexture(course[loadc].dir, "bk.jpg",	4,0,7);
   loadtexture(course[loadc].dir, "terrain.jpg",	4,0,9);
   loadtexture(course[loadc].dir, "map.bmp",	4,0,13);
-  loadtexture("all", "firstuser.jpg",	4,0,14);
+  loadtexture("all", "firstuser.png",	4,0,14);
   loadmap    (&course[loadc]);
   
   player.rotvel	=  0;
@@ -167,6 +167,9 @@ int gamekeys(void){
 	    brakes = 1;
 	    break;
 	  case SDLK_ESCAPE:
+		player.vel=0;
+		dist=0;
+		flag=1;
 	  case SDLK_q:
 	    menu = 1;
 	    initmenu();
@@ -198,6 +201,10 @@ int gamekeys(void){
 	  case SDLK_SPACE:
 	    brakes = 0;
 	    break;
+	case SDLK_ESCAPE:
+		player.vel=0;
+		dist=0;
+		flag=1;
           default:
 	    break;
 	}
