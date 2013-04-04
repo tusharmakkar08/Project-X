@@ -21,7 +21,7 @@
 
 #define TITLE		"Project X"
 #define VERSION		"1.00"
-#define NUM_TEXTURES	14				/* Number of textures to load */
+#define NUM_TEXTURES	15				/* Number of textures to load */
 #define radtodeg	57.295779513			/* 180 / pi */
 #define degtorad	0.0174532925			/* pi / 180 */
 #define MAP_WIDTH	64

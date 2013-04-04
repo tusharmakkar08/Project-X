@@ -5,7 +5,7 @@ tusharmakkar08
 sayan_666
 (the anonymous) 
 
-It is the modified version of game made by judio and foobar
+It is the modified version of game made by judio and foobar (https://github.com/loopj/opengl-racing-game)
 
 ###############
 # Readme File #
@@ -23,8 +23,11 @@ Episode One Racer and Wipeout in gameplay and graphics.
    Texture Coordinates
    Object Speed/Accelleration
    Air resistance
+   Wall Detection
    Skybox
    Maximum Speed
+   Winning and Loosing mode
+   First Person and Third Person interfacing
    Acceleration Variable
    Timings of redraw
    Rotation Response Accel
@@ -67,7 +70,6 @@ Episode One Racer and Wipeout in gameplay and graphics.
  To Implement:
  ============
    Angle Detection:
-    o Wall detection
     o x and z-axis tilting
     o Crashing and Damage
     o Falling from High

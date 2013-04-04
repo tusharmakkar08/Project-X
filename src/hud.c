@@ -34,7 +34,7 @@ int speedo(float speed){
 
   /* Speed Barchart */
   orthosetup();
-    glTranslatef(xres-120, 10, 0);
+    glTranslatef(xres-120 ,10, 0);
     glBindTexture(GL_TEXTURE_2D, texture[11]);
     glBegin(GL_QUADS);
       glTexCoord2f(0.0f,        0.0f);	glVertex2f(0,0);
@@ -54,6 +54,21 @@ int speedo(float speed){
   return 1;
 }
 
+int firstperson(){
+  /* Speed Barchart */
+  orthosetup();
+glTranslatef(xres-120, 10, 0);
+    glBindTexture(GL_TEXTURE_2D, texture[14]);
+    glBegin(GL_QUADS);
+      glTexCoord2f(0.0f,0.0f);	glVertex2f(300,0);
+      glTexCoord2f(0.0f,1.0f);	glVertex2f(300,300);
+      glTexCoord2f(1.0f,1.0f);	glVertex2f(-xres,300);
+      glTexCoord2f(1.0f,0.0f);	glVertex2f(-xres,0);
+    glEnd();
+  orthoreset();
+  return 1;
+}
+
 int fpscount(){
   char fpstxt[5];
   sprintf(fpstxt,"%i",(int)get_fps());
@@ -66,7 +81,7 @@ int fpscount(){
 }
 
 int radar(int range){
-/*  float x,y;
+  float x,y;
   float ax,bx,cx,dx;
   float ay,by,cy,dy;
 
@@ -81,8 +96,9 @@ int radar(int range){
   orthosetup();
     glTranslatef(60, yres-60, 0);
     glColor4f( 0.0f, 1.0f, 0.0f, 0.5f );
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+if(!tushar)
+{
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     glBindTexture(GL_TEXTURE_2D, texture[13]);
     glBegin(GL_QUADS);
@@ -92,7 +108,20 @@ int radar(int range){
       glTexCoord2f(dx,ay);	glVertex2f(-50, 50);
     glEnd();
     glDisable(GL_BLEND);
-
+}
+if(tushar)
+{
+glBlendFunc(GL_ONE, GL_ONE);
+    glEnable(GL_BLEND);
+    glBindTexture(GL_TEXTURE_2D, texture[13]);
+    glBegin(GL_QUADS);
+      glTexCoord2f(ax,dy);	glVertex2f(xres/2-50,-500-50);
+      glTexCoord2f(bx,cy);	glVertex2f(xres/2+50,-500-50);
+      glTexCoord2f(cx,by);	glVertex2f(xres/2+50, -500+50);
+      glTexCoord2f(dx,ay);	glVertex2f(xres/2-50,-500+50);
+    glEnd();
+    glDisable(GL_BLEND);
+}
     glColor4fv(white);
     glBegin(GL_LINES);
       glVertex2d(0, cos(degtorad*-player.rot)*-5);
@@ -100,7 +129,7 @@ int radar(int range){
     glEnd();
 
   orthoreset();
-  */return 1;
+  return 1;
 }
 int end()
 {
@@ -179,8 +208,10 @@ int drawhud(){
     speed = -player.vel*36;
   else
     speed =  player.vel*36;
-
+if(tushar)
+ firstperson();
   speedo(speed);
+ 
   if(showfps)
     fpscount();
   radar(10);
