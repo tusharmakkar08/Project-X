@@ -1,12 +1,4 @@
 #include "global.h"
-
-/*************************************************
- * There is a reason behind this almost empty    *
- * camera.c, which is that judeo has some crazy  *
- * ideas about cool camera zooming and following *
- * effects which I will hopefully implement here *
- * later.					 *
- *************************************************/
  
  int camera(SHIP ship, GLfloat distance){
   gluLookAt(						/* Point the camera as follows */

@@ -57,6 +57,15 @@ int loadmap(MAP *course){
     }
   SDL_UnlockSurface(mapimg);
   SDL_FreeSurface(mapimg);
+// Setup fog
+/* GLfloat fColor[4]= {0.0f, 0.3f, 0.4f, 1.0f};
+ glClearColor(0.0f, 0.3f, 0.4f, 1.0f);
+ glFogi(GL_FOG_MODE, GL_EXP2);
+ glFogfv(GL_FOG_COLOR, fColor);
+ glFogf(GL_FOG_DENSITY, 0.0005f);
+ glFogf(GL_FOG_START, 1.0f);
+ glFogf(GL_FOG_END, 5.0f);
+ glEnable(GL_FOG);*/
 
   debugf("Finished Loading Map");
 
@@ -69,7 +78,7 @@ int drawmap(MAP *course){
   float ua,ub,va,vb;
 
   /*
-     foobar's 31337 quad-based map loading v2
+     quad-based map loading v2
      Draws the data loaded from terrain[id] to
      the screen. Also includes texture co-ords.
 

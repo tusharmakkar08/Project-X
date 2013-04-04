@@ -94,7 +94,7 @@ int ship(void){
         if(vertices[vi][2] > player.zmax) player.zmax = vertices[vi][2];
         if(vertices[vi][0] < player.xmin) player.xmin = vertices[vi][0];
         if(vertices[vi][2] < player.zmin) player.zmin = vertices[vi][2];
-     
+
         glTexCoord2f(textures[ti][0], textures[ti][1]);
         glVertex3f(vertices[vi][0], vertices[vi][1], vertices[vi][2]);
       }
@@ -119,7 +119,7 @@ int gamedraw(void){
   camera(player,10);
 
   /* Begin Drawing the Level */
-  skybox(5000,3000,5000);
+  skybox(3500,3000,3500);
   drawmap(&course[loadc]);
 
   /* Draw the Ship */

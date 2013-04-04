@@ -86,10 +86,6 @@ menulist[4]="Third person";
   orthoreset();
 
   glEnable(GL_BLEND);
-    glColor3f(1.0f, 1.0f, 1.0f);
-    fontprint(xres/2-(4.5*20), yres-80, "You lose",0,1,1);
-    glColor3f(1.0f,0.0f,0.0f);
-    fontprint(xres/2-(4.5*20)+2, yres-78, "You Lose",0,1,1);
 
 
     fontprint(xres/2-80, yres-130 - (25*menuitem), "o",0,0.5,0);
