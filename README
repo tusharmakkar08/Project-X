@@ -1,8 +1,8 @@
 Project X
 Race Game Version 1.0
 By:
-tusharmakkar08
-sayan_666
+tusharmakkar08 (https://github.com/tusharmakkar08)
+Sayan-Paul (https://github.com/Sayan-Paul)
 (the anonymous) 
 
 It is the modified and improved version of game made by judio and foobar (https://github.com/loopj/opengl-racing-game)
@@ -17,8 +17,8 @@ Episode One Racer and Wipeout in gameplay and graphics.
 # Features: #
 #############
 
- Complete/In Progress:
- ====================
+ Complete:
+ =========
    Model and Texture Loading
    Texture Coordinates
    Object Speed/Accelleration
@@ -61,6 +61,7 @@ Episode One Racer and Wipeout in gameplay and graphics.
     o Fullscreen Toggle
     o Debug Toggle
     o FPS Toggle
+    o Boundary detection 
 
    Messages:
     o Error	-> msg & exit
@@ -76,7 +77,6 @@ Episode One Racer and Wipeout in gameplay and graphics.
     o Falling from High
     o Bouncing off Walls
     o Impacts/Surface Change
-   Boundary detection (broken)
    Nicer Physics Engine
    Lap Counter
    Opponents and AI
@@ -106,3 +106,4 @@ These keys can be changed by editing the config file, which
 is fairly self explanatory.
 
 Have fun 
+tusharmakkar08 and sayan-paul
