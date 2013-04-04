@@ -8,5 +8,6 @@ int fpscount();
 int radar(int range);
 int timer();
 int drawhud();
+int firstperson();
 
 #endif

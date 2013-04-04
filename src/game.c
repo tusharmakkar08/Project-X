@@ -28,6 +28,7 @@ int initgame(){
   loadtexture(course[loadc].dir, "bk.jpg",	4,0,7);
   loadtexture(course[loadc].dir, "terrain.jpg",	4,0,9);
   loadtexture(course[loadc].dir, "map.bmp",	4,0,13);
+  loadtexture("all", "firstuser.jpg",	4,0,14);
   loadmap    (&course[loadc]);
   
   player.rotvel	=  0;
@@ -242,11 +243,27 @@ int gamemove(void){
     }
 
   /* Player Movement */
-  player.x   += player.vel * sin(player.rot*degtorad) 	* adjust;
+	player.x   += player.vel * sin(player.rot*degtorad) 	* adjust;
   player.y    = getheight(-player.x, -player.z) + hover + YSHIFT;
   player.z   += player.vel * cos(player.rot*degtorad) 	* adjust;
+if(player.z>=-63)
+{
+	player.z=-63;
+}
+if(player.x>=-119)
+{
+	player.x=-119;
+}
+if(player.x<=-2900)
+{
+	player.x=-2900;
+}
+if(player.z<=-3000)
+{
+	player.z=-3000;
+}
   player.rot += player.rotvel 				* adjust;
-
+  //printf("x=%lf , y=%lf, z=%lf",player.x,player.y,player.z);
   if(brakes)
     player.dir = 0;
 
