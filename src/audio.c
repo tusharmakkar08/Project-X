@@ -3,13 +3,15 @@
 #include "main.h"
 #include "messages.h"
 
-int initaudio(void){
+int initaudio(void)
+{
   if(SDL_InitSubSystem(SDL_INIT_AUDIO) == -1)
     error("Could not initialize audio subsystem");
   else
     debugf("Initialised Audio Subsytem");
 
-  if(Mix_OpenAudio(22060,AUDIO_S16SYS,2,512) < 0){
+  if(Mix_OpenAudio(22060,AUDIO_S16SYS,2,512) < 0)
+{
     warning("Disabling audio (%s)",SDL_GetError());
     audio = 0;
   }else
