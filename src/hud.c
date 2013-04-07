@@ -187,7 +187,7 @@ if(flag)			// For reinitializing stuff like velocity when escape button is press
 	player.vel=0;
 }
 
-if((seconds>=40)&&(dist<82000))		// Loosing condition
+if((seconds>=40)&&(dist<80000))		// Loosing condition
 {
 	printf("You Lose\n");
 	dist=0;
@@ -195,7 +195,7 @@ if((seconds>=40)&&(dist<82000))		// Loosing condition
 	return 1;
 }
 
-if(dist>=82000)				// Winning condition
+if(dist>=80000)				// Winning condition
 {
 	printf("You win\n");
 	dist=0;
@@ -224,7 +224,7 @@ if(player.y>=60)				// Condition for showing that vehicle is going offtrack
 if(player.y<60)
 glColor4fv(white);
 
-dist1=82000-dist;				// Distance left for winning
+dist1=80000-dist;				// Distance left for winning
 sprintf(st,"Distance Left : %d m",dist1/100);
 if(hundredths < 10)
    sprintf(hunsec,"0%d",hundredths);
