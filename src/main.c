@@ -15,7 +15,10 @@
 #include <time.h>
 #include "messages.h"
 
-void killgame(int returnCode){
+// Main code for the game
+
+void killgame(int returnCode)		// ending the game
+{
   glDeleteLists(base,256);				/* Delete All 256 Display Lists */
   glDeleteTextures(NUM_TEXTURES, &texture[0]);		/* Clean up our textures */
 
@@ -29,7 +32,8 @@ void killgame(int returnCode){
   exit(returnCode);					/* Exit appropriately */
 }
 
-int resize(int width, int height){
+int resize(int width, int height)	// resizing the screen 
+{
   float ratio;					/* Height / width ratio */
   if(height == 0) height = 1;				/* Protect against a divide by zero */
   ratio = (GLfloat)width / (GLfloat)height;		/* Width to Height Ratio */
@@ -43,7 +47,8 @@ int resize(int width, int height){
   return 1;
 }
 
-int events(void){
+int events(void)		// charachterizing the events such as fail in resizing
+{
   switch(event.type){
     case SDL_VIDEORESIZE:
       surface = SDL_SetVideoMode(event.resize.w,event.resize.h,16,videoFlags);
@@ -66,7 +71,8 @@ int events(void){
   return 1;
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
 
   /* Load me from a text file */
   course[3].dir		= "desert";
@@ -82,8 +88,8 @@ int main(int argc, char **argv){
   course[0].description = "Speedy dash around the city of NITK Surathkal";
 
  course[1].dir="space";
-course[1].name="Space Adventure";
-course[1].description="awesome journey in space";
+ course[1].name="Space Adventure";
+ course[1].description="awesome journey in space";
 
   printf("%s version %s\nCopyleft sayan_666 and tusharmakkar08 \n",TITLE,VERSION);
 

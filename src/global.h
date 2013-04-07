@@ -1,3 +1,4 @@
+// Storing global variables arrays structures and libraries 
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
@@ -36,26 +37,30 @@ typedef unsigned char  byte;
 typedef unsigned short word;
 typedef unsigned long dword;
 
-typedef struct{
+typedef struct
+{
   GLfloat	x;
   GLfloat	y;
   GLfloat	z;
 } VERTEX;
 
-typedef struct{
+typedef struct
+{
   GLfloat 	x;
   GLfloat	y;
   GLfloat	z;
 } VECTOR;
 
-typedef struct{
+typedef struct
+{
   GLfloat	a;
   GLfloat	b;
   GLfloat	c;
   GLfloat	d;
 } PLANE;
 
-typedef struct{
+typedef struct
+{
   char  *dir;
   char  *name;
   char  *description;
@@ -66,11 +71,13 @@ typedef struct{
   float *v;
 } MAP;
 
-typedef struct{
+typedef struct
+{
   GLfloat y,u,v;
 } MODEL;
 
-typedef struct{
+typedef struct
+{
   GLfloat 	x,y,z;					/* position co-ordinates  */
   GLfloat 	vel;					/* x and z velocity	  */
   GLfloat 	dir;					/* motion direction	  */
@@ -90,15 +97,15 @@ typedef struct{
 int		xres;
 int		yres;
 int		fullscreen;
-int 		tushar;
-int 		sayan;
-int 		dist;
-int 		dist1;
+int 		tushar;					// for first person and third person interfacing tushar variable is used as a flag
+int 		sayan;					// used for having different texture background/sound when a person wins or looses
+int 		dist;					// Distance travelled
+int 		dist1;					// Distance left
 int		bpp;
 int		debug;
 int		audio;
 int		showfps;
-int 		flag;
+int 		flag;					//For reinitializing velocity and other stuff when escape is pressed
 
 int		loadc;
 int		timestart;

@@ -1,5 +1,7 @@
 #include "global.h"
 
+// Pushing and Popping out current model view and projection matrix
+
 void orthosetup(){
   glLoadIdentity();
   glDisable(GL_DEPTH_TEST);

@@ -5,6 +5,8 @@
 #include "vector.h"
 #include "messages.h"
 
+// Main work is to load maps terrains through getpixel. Hint : to change map convert a map to gray scale and then convert it into .bmp file .
+
 /* Maximum Value of Heightfield */
 float max   = 16777215;
 
@@ -57,9 +59,9 @@ int loadmap(MAP *course){
     }
   SDL_UnlockSurface(mapimg);
   SDL_FreeSurface(mapimg);
-// Setup fog
- GLfloat fColor[4]= {0.0f, 0.3f, 0.4f, 1.0f};
- glClearColor(0.0f, 0.3f, 0.4f, 1.0f);
+						
+ GLfloat fColor[4]= {0.0f, 0.3f, 0.4f, 1.0f};		// Setting up Fog improving the enthusiasm among game players 
+ glClearColor(0.0f, 0.3f, 0.4f, 1.0f);			// Can have bonus stages where one has to view through radar only
  glFogi(GL_FOG_MODE, GL_EXP2);
  glFogfv(GL_FOG_COLOR, fColor);
  glFogf(GL_FOG_DENSITY, 0.0007f);
@@ -73,7 +75,8 @@ int loadmap(MAP *course){
 }
 
 /* Draw the Currently Loaded Map */
-int drawmap(MAP *course){
+int drawmap(MAP *course)
+{
   int x,z,ida,idb,idc,idd;
   float ua,ub,va,vb;
 
@@ -137,7 +140,8 @@ int drawmap(MAP *course){
 }
 
 /* Get the Equation of the plane at x,z from the Loaded Map */
-PLANE getplane(float x, float z){
+PLANE getplane(float x, float z)
+{
   PLANE pi;
   int xf,zf,ida,idb,idc;
   VERTEX a,b,c;
@@ -167,7 +171,8 @@ PLANE getplane(float x, float z){
 }
 
 /* Get the height at x,z from the Loaded Map */
-float getheight(float x, float z){
+float getheight(float x, float z)
+{
   PLANE alpha;
   float currentheight,xloc,zloc;
 

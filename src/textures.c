@@ -1,8 +1,12 @@
 #include "global.h"
 #include "messages.h"
 
-int getfilter(int filter){
-  switch(filter){
+// getting values of filter , loading textures and getting alpha values (intensity)
+
+int getfilter(int filter)
+{
+  switch(filter)
+ {
     case 0:
       return GL_NEAREST;
     case 1:
@@ -20,7 +24,8 @@ int getfilter(int filter){
   }
 }
 
-int getalpha(int alpha){
+int getalpha(int alpha)
+{
   switch(alpha){
     case 3:
       return GL_RGB;
@@ -31,7 +36,8 @@ int getalpha(int alpha){
   }
 }
 
-int loadtexture(char *dir, char *file, int filter, int repeat, int id){
+int loadtexture(char *dir, char *file, int filter, int repeat, int id) // loading textures in a particular directory 
+{
   SDL_Surface	*image;
   char		location[6+strlen(dir)+strlen(file)];
   

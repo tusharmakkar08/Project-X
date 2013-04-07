@@ -2,7 +2,10 @@
 #include "font.h"
 #include "ortho.h"
 
-int fontbuild(void){
+// For font generation
+
+int fontbuild(void)		// building out font from the given image
+{
   float cx,cy;
 
   base = glGenLists(256);
@@ -24,7 +27,8 @@ int fontbuild(void){
   return 1;
 }
 
-int fontprint(GLint x, GLint y, char *string, int face, float scale, int bold){
+int fontprint(GLint x, GLint y, char *string, int face, float scale, int bold)	// Printing font accordingly scale it write in bold  show face
+{
   orthosetup();
   
   if(face == 0)

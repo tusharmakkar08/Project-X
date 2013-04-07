@@ -10,8 +10,7 @@ It is the modified and improved version of game made by judio and foobar (https:
 ###############
 # Readme File #
 ###############
-Aims to be similar to high speed racing games Star Wars:
-Episode One Racer and Wipeout in gameplay and graphics.
+Aims to be similar to high speed racing games Star Wars / NFS.
 
 #############
 # Features: #
@@ -53,6 +52,10 @@ Episode One Racer and Wipeout in gameplay and graphics.
     o Radar
     o Framerate
     o Speed
+    o Distance Left
+    o Extreeme timer precision during last 10 seconds
+    o First person cockpit view
+   
 
    Config File:
     o Screen Resolution	

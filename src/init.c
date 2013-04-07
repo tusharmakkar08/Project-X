@@ -6,6 +6,8 @@
 #include "messages.h"
 #include "audio.h"
 
+// For initializing SDL library
+
 int videoFlags;
 
 int initsdl(void){
