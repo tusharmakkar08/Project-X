@@ -2,6 +2,8 @@
 #include "global.h"
 #include "main.h"
 
+// Functions made for debugging , giving warning and finding out errors
+
 int debugf(char *message, ... ){
   if(debug){
     va_list args;

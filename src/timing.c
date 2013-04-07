@@ -1,6 +1,8 @@
 #include "global.h"
 #include <time.h>
 
+// Used for getting frames per second 
+
 #define FRAME_COUNT 10
 
 static int	then = 0;

@@ -17,7 +17,8 @@ float xdis,oldx,zdis,oldz;				/* Speedo Variables */
 float fps;						/* Initial FPS (Stops divide by 0) */
 float rotplus;
 
-int initgame(){
+int initgame()
+{
   loadtexture("all",		 "px.jpg",	4,0,8);
   loadtexture("all",		 "speed.jpg",	4,0,11);
   loadtexture(course[loadc].dir, "lf.jpg",	4,0,2);
@@ -28,10 +29,10 @@ int initgame(){
   loadtexture(course[loadc].dir, "bk.jpg",	4,0,7);
   loadtexture(course[loadc].dir, "terrain.jpg",	4,0,9);
   loadtexture(course[loadc].dir, "map.bmp",	4,0,13);
-  loadtexture("all", "firstuser.png",	4,0,14);
+  loadtexture("all", "firstuser.png",	4,0,14);		// loading image for creating cockpit
   loadmap    (&course[loadc]);
   
-  player.rotvel	=  0;
+  player.rotvel	=  0;						// Initializing variables
   player.vel 	=  0;
   player.dir 	=  0;
   player.rotdir =  0;
@@ -42,15 +43,17 @@ int initgame(){
   debugf("Reset Player Variables");
   playmusic("data/music/growler.mp3");
   newgame = 0;
-  timestart = SDL_GetTicks();
-  printf("\nLoaded Map:\n  %s (data/%s)\n  %s\n\n",
+  timestart = SDL_GetTicks();					// SDL_getTicks getting for timer function
+
+  printf("\nLoaded Map:\n  %s (data/%s)\n  %s\n\n",			
           course[loadc].name, course[loadc].dir,
-	  course[loadc].description);
+	  course[loadc].description);					// printing on terminal
 
   return 1;
 }
 
-int skybox(float width, float height, float length){
+int skybox(float width, float height, float length)			// Cube skybox implementation on which we load textures for sea ,desert etc
+{
   float x=-100,y=-height/10,z=-100;
   int   i,j,vi;
  
@@ -61,7 +64,8 @@ int skybox(float width, float height, float length){
   int sb_texcoords[4][2] = {{1,1},{1,0},{0,0},{0,1}};
   int sb_faces[6][4] = {{3,2,1,0},{4,6,7,5},{0,4,5,3},
                         {6,1,2,7},{0,1,6,4},{5,7,2,3}};
-  for(i=0;i<6;i++){
+  for(i=0;i<6;i++)
+{
     glBindTexture(GL_TEXTURE_2D, texture[i+2]);
     glBegin (GL_QUADS);
     for(j=0;j<4;j++){
@@ -75,7 +79,9 @@ int skybox(float width, float height, float length){
   return 1;
 }
 
-int ship(void){
+
+int ship(void)			// Ship model
+{
   glTranslatef(-player.x,player.y,-player.z);
     glRotatef(player.xtilt,         1.0f,0.0f,0.0f);	/* Rotate Around X-Axis */
     glRotatef(player.rot + rotplus, 0.0f,1.0f,0.0f);	/* Rotate Around Y-Axis */
@@ -107,7 +113,8 @@ int ship(void){
   return 1;
 }
 
-int gamedraw(void){
+int gamedraw(void)			// drawing main game's compononts
+{
 
   /* Calculate Timings for this Frame */
   timeframe();
@@ -124,7 +131,7 @@ int gamedraw(void){
   drawmap(&course[loadc]);
 
   /* Draw the Ship */
-	if(tushar==0)
+	if(tushar==0)			// for first person and third person integrating feature
   ship();
 
   /* Draw The HUD Items */
@@ -135,7 +142,8 @@ int gamedraw(void){
   return 1;
 }
 
-int gamekeys(void){
+int gamekeys(void)					// Defining buttons of the game using SDL 
+{
   /* Key Handling */
   while(SDL_PollEvent(&event)){
     events();
@@ -202,7 +210,7 @@ int gamekeys(void){
 	    brakes = 0;
 	    break;
 	case SDLK_ESCAPE:
-		player.vel=0;
+		player.vel=0;				// This is done for reinitializing the game
 		dist=0;
 		flag=1;
           default:
@@ -220,7 +228,9 @@ int gamekeys(void){
   return 1;
 }
 
-int gamemove(void){
+int gamemove(void)		// Movement of ship is defined here
+{
+
   float adjust  = (100.0/get_fps());			/* Framerate Correction */
   float scale   = 360;					/* m/s -> km/h */
   float hover   = sin(2*(SDL_GetTicks()/1000.0));
@@ -236,52 +246,67 @@ int gamemove(void){
   if(player.rot <= 0)
     player.rot += 360;
 
-    if(player.rotdir == 1){
-      if(rotplus <= 30)
-        rotplus += 1 * adjust;
-    }else if(player.rotdir == -1){
-      if(rotplus >= -30)
-        rotplus -= 1 * adjust;
-    }else{
-      if(rotplus > 0)
-        rotplus -= 1 * adjust;
-      else if(rotplus < 0)
-        rotplus += 1 * adjust;
-    }
+    if(player.rotdir == 1)
+	{
+	      if(rotplus <= 30)
+	        rotplus += 1 * adjust;
+	 }
+	else if(player.rotdir == -1)
+	{
+	      if(rotplus >= -30)
+        	rotplus -= 1 * adjust;
+	}	
+	else
+	{
+	      if(rotplus > 0)
+	        rotplus -= 1 * adjust;
+	      else if(rotplus < 0)
+	        rotplus += 1 * adjust;
+	}
 
   /* Player Movement */
 	player.x   += player.vel * sin(player.rot*degtorad) 	* adjust;
-  player.y    = getheight(-player.x, -player.z) + hover + YSHIFT;
-  player.z   += player.vel * cos(player.rot*degtorad) 	* adjust;
-if(player.z>=-63)
+	player.y    = getheight(-player.x, -player.z) + hover + YSHIFT;
+	player.z   += player.vel * cos(player.rot*degtorad) 	* adjust;
+
+if(player.z>=-63)			// Code for restricting the ship within bounds of graph
 {
 	player.z=-63;
 }
+
 if(player.x>=-119)
 {
 	player.x=-119;
 }
+
 if(player.x<=-2900)
 {
 	player.x=-2900;
 }
+
 if(player.z<=-3000)
 {
 	player.z=-3000;
 }
-  player.rot += player.rotvel 				* adjust;
+  player.rot += player.rotvel * adjust;
   //printf("x=%lf , y=%lf, z=%lf",player.x,player.y,player.z);
-  if(brakes)
+
+  if(brakes)				// checking for brakes application
     player.dir = 0;
 
   /* Velocity Calculations */
-  if(player.dir > 0){					/* Backward Motion */
+  if(player.dir > 0)
+{					/* Backward Motion */
     if(player.vel <= 0.5*player.maxvel)
       player.vel += player.accel * player.dir;		/* Accelerate to Max Speed */
-  }else if(player.dir < 0){				/* Forward Motion */
+}
+else if(player.dir < 0)
+{				/* Forward Motion */
     if(player.vel >= -player.maxvel)
       player.vel += player.accel * player.dir;		/* Accelerate to Max Speed */
-  }else{
+}
+else
+{
     if(player.vel > 5/scale)
       if(brakes)
         player.vel -= 3*player.accel;			/* Forward Deccel */
@@ -294,23 +319,29 @@ if(player.z<=-3000)
         player.vel += player.accel/2;			/* Backward Deccel */
     else
       player.vel = 0;					/* Stop Moving */
-  }
+}
   
   /* Rotational Velocity Calculations */
-  if(player.rotdir > 0){				/* Right Rotation */
+  if(player.rotdir > 0)
+{				/* Right Rotation */
     if(player.rotvel <= player.rotmax)
       player.rotvel += player.rotacc * player.rotdir;	/* Accelerate to Max Rotation */
-  }else if(player.rotdir < 0){				/* Left Rotation */
+}
+else if(player.rotdir < 0)
+{				/* Left Rotation */
     if(player.rotvel >= -player.rotmax)
       player.rotvel += player.rotacc * player.rotdir;	/* Accelerate to Max Rotation */
-  }else{
+}
+else
+{
     if(player.rotvel > 0)
       player.rotvel -= player.rotacc;			/* Left Deccel */
     else if (player.rotvel < 0)
       player.rotvel += player.rotacc;			/* Right Deccel */
     else
       player.rotvel = 0;				/* Stop Rotating*/
-  }
+}
 
   return 1;
 }
+

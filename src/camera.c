@@ -1,5 +1,5 @@
 #include "global.h"
- 
+// camera for ship zoom 
  int camera(SHIP ship, GLfloat distance){
   gluLookAt(						/* Point the camera as follows */
   -ship.x - (float)sin(ship.rot*degtorad)*distance,	/* Look from a Distance */

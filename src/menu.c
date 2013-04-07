@@ -1,3 +1,4 @@
+// Game Menu 
 #include "global.h"
 #include "menu.h"
 #include "main.h"
@@ -6,30 +7,30 @@
 #include "audio.h"
 #include "ortho.h"
 #include <time.h>
-#define MENU_ITEMS	6
+#define MENU_ITEMS	6			// No of items in the menu
 #define RES_ITEMS	3
-int tushar=1;
+int tushar=1; 			// Tushar initialized to 1 to make first person view the default view of the game
 char *menulist[20];
 int   menuitem = 0;
 char  res[9];
 
-int loadmenu(void){
-
-menu = 1;
-
-  loadtexture("all","loading.jpg",	1,0,10);
+int loadmenu(void)			// loading the menu
+{
+  menu = 1;
+  loadtexture("all","loading.jpg",	1,0,10);		// loading textures
   loadtexture("all","font.png",		4,0,0);
   loadtexture("all","fontoutline.png",	4,0,12);
-if(!sayan)
+if(!sayan)						// if sayan==0 default screen will come
 {
   loadtexture("all","menu.jpg",		4,0,1);
 initmenu();
-}else if(sayan==1)
+}
+else if(sayan==1)				// losing screen
 {
 loadtexture("all","lose.jpg",4,0,1);
 initmenu1();
 }
-else if(sayan==2)
+else if(sayan==2)				// winning screen
 {
 loadtexture("all","win.jpg",4,0,1);
 initmenu2();
@@ -38,27 +39,28 @@ initmenu2();
   return 1;
 }
 
-int initmenu(void){
-
-  playmusic("data/music/sensation.mp3");
-  
+int initmenu(void)			// playing default menu sound
+{
+  playmusic("data/music/sensation.mp3");  
   return 1;
 }
-int initmenu1(void){
 
-  playmusic("data/music/Lose.mp3");
-  
+int initmenu1(void)				// playing loosing menu sound
+{
+  playmusic("data/music/Lose.mp3"); 
   return 1;
 }
-int initmenu2(void){
 
-  playmusic("data/music/Win.mp3");
-  
+int initmenu2(void)				// playing winning menu sound
+{
+  playmusic("data/music/Win.mp3"); 
   return 1;
 }
-int menudraw1(void){
+
+int menudraw1(void) 	// Different menu draw functions for different cases
+{
   int x;
-loadmenu();
+  loadmenu();
   menulist[0] = "Start game";
   
   menulist[1] = course[loadc].name;
@@ -66,13 +68,12 @@ loadmenu();
   if(fullscreen == 1)
     menulist[2] = "Fullscreen";
   else
-    menulist[2] = "Windowed";
+    menulist[2] = "Windowed";  
 
-  //sprintf(res,"%ix%i",xres,yres);
-// menulist[3] = res;
-  
   menulist[5] = "Exit Game";
+
 menulist[3]="First Person";
+
 menulist[4]="Third person";
   
   orthosetup();
@@ -106,7 +107,9 @@ menulist[4]="Third person";
   SDL_Delay(10); /* Menu doesnt need high framerate */
   return 1;
 }
-int menudraw(void){
+
+int menudraw(void)
+{
   int x;
   
   menulist[0] = "Start Game";
@@ -116,11 +119,7 @@ int menudraw(void){
   if(fullscreen == 1)
     menulist[2] = "Fullscreen";
   else
-    menulist[2] = "Windowed";
-
-  //sprintf(res,"%ix%i",xres,yres);
-  //menulist[3] = res;
-  
+    menulist[2] = "Windowed";  
   menulist[5] = "Exit Game";
 menulist[4]="Third Person";
 menulist[3]="First person";
@@ -160,8 +159,8 @@ menulist[3]="First person";
   return 1;
 }
 
-int menukeys(void){
-
+int menukeys(void) 		// Impact for pressing keys during menu 
+{
   /* Key Handling */
   while (SDL_PollEvent(&event)){
     events();
@@ -178,8 +177,8 @@ int menukeys(void){
 	      case 5:
 	        killgame(1);
 		break;
-		case 4:tushar=0;
-break;
+		case 4:tushar=0;			// for first person and third person view
+		break;
 		case 3:
 		tushar=1;
 		break;
@@ -256,7 +255,8 @@ break;
   return 1;
 }
 
-int loading(void){
+int loading(void)
+{
 
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
   

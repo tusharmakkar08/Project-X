@@ -11,6 +11,8 @@
 #include "font.h"
 #include "messages.h"
 
+// Heads up display (HUD) file supporting user interface
+
 /* Color Arrays */
 float white[]  = {1.0,1.0,1.0,1.0};
 float black[]  = {0.0,0.0,0.0,1.0};
@@ -25,7 +27,8 @@ float dgreen[] = {0.0,0.5,0.0,1.0};
 float dblue[]  = {0.0,0.0,0.5,1.0};
 float dyellow[] = {0.5,0.5,0.0,1.0};
 
-int speedo(float speed){
+int speedo(float speed)			// For showing speed like a bar
+{
   float spdperc;
   char  spdtxt[5];
 
@@ -49,12 +52,11 @@ int speedo(float speed){
     fontprint(xres-130, 35, spdtxt, 1,1,  0);
     fontprint(xres-60,  40,"km/h",  1,0.5,0);
   glDisable(GL_BLEND);
-
-  
   return 1;
 }
 
-int firstperson(){
+int firstperson() 		// For first person view
+{
   /* First person Cockpit view */
   orthosetup();
 glTranslatef(xres-120, 10, 0);
@@ -69,7 +71,8 @@ glTranslatef(xres-120, 10, 0);
   return 1;
 }
 
-int fpscount(){
+int fpscount()				// Counting frame per seconds
+{
   char fpstxt[5];
   sprintf(fpstxt,"%i",(int)get_fps());
 
@@ -80,7 +83,9 @@ int fpscount(){
   return 1;
 }
 
-int radar(int range){
+
+int radar(int range)				// Radar display
+{
   float x,y;
   float ax,bx,cx,dx;
   float ay,by,cy,dy;
@@ -97,7 +102,8 @@ int radar(int range){
     glTranslatef(60, yres-60, 0);
     glColor4f( 0.0f, 1.0f, 0.0f, 0.5f );
 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-if(!tushar)
+
+if(!tushar)						// in case of 3rd person setting up the location of radar in right uppermost place
 {
     glEnable(GL_BLEND);
     glBindTexture(GL_TEXTURE_2D, texture[13]);
@@ -114,7 +120,8 @@ if(!tushar)
       glVertex2d(sin(degtorad*-player.rot)* 5, cos(degtorad*-player.rot)* 5);
     glEnd();
 }
-if(tushar)
+
+if(tushar)				// Setting up radar at appropriate place in first person view
 {
 	
     glEnable(GL_BLEND);
@@ -136,83 +143,93 @@ if(tushar)
 
   orthoreset();
   return 1;
+
 }
-int end()
+
+int end()		// For setting different display when a person looses or wins then corresponding function end and end1 are called
 {
 	sayan=1;
 	menukeys();    
-      menudraw1();
+        menudraw1();
 	return 1;
 }
-int end1()
+
+int end1()		
 {
 	sayan=2;
 	menukeys();    
-      menudraw1();
+        menudraw1();
 	return 1;
 }
 
-
-int timer(){
-     int   timenow = SDL_GetTicks();
+int timer()		// Timer implementation along with distance , winning strategy , different colouring mode , penalty mode , more precise timer near end
+{
+   int   timenow = SDL_GetTicks();
    float elapsed;
    int   minutes    = 0;
    int   seconds    = 0;
    int   hundredths = 0;
    char  minsec[5];
    char  hunsec[5];
-   char  st[30];
-   char ts[100];
+   char  st[30];			// For showing distance left
+   char ts[100];			// For showing offtrack vehicle
    
-   elapsed    = (float)(timenow - timestart) / 1000;
+  elapsed    = (float)(timenow - timestart) / 1000;
   minutes    = (int)  (elapsed)             / 60;
   seconds    = (int)  (elapsed)             % 60;
-   hundredths = (int)  (elapsed * 100 + 0.5) % 100;
-	if(flag)
+  hundredths = (int)  (elapsed * 100 + 0.5) % 100;
+
+if(flag)			// For reinitializing stuff like velocity when escape button is pressed
 {
 	flag=0;
 	timestart=timenow;
 	minutes=seconds=hundredths=0;
 	player.vel=0;
 }
-   if((seconds>=40)&&(dist<82000))
-	{
+
+if((seconds>=40)&&(dist<82000))		// Loosing condition
+{
 	printf("You Lose\n");
 	dist=0;
 	end();		
 	return 1;
-	}
-if(dist>=82000)
+}
+
+if(dist>=82000)				// Winning condition
 {
 	printf("You win\n");
 	dist=0;
 	end1();
 	return 1;
 }
-if(player.vel>=0)
+
+if(player.vel>=0)			// Calculating distance
 	dist+=player.vel*12;
 else
-dist-=player.vel*12;
-if(player.y>=60){
-sprintf(ts,"Vehicle Off Track !!!");
-glEnable(GL_BLEND);
-     fontprint(xres-(30*20)-300,yres-150,ts,1,1,1);
-   glDisable(GL_BLEND);
-glColor4fv(blue);
-if(player.vel>=0)
-	dist-=player.vel*24;
-else
-dist+=player.vel*24;}
+	dist-=player.vel*12;
+
+if(player.y>=60)				// Condition for showing that vehicle is going offtrack
+{
+	sprintf(ts,"Vehicle Off Track !!!");
+	glEnable(GL_BLEND);
+        fontprint(xres-(30*20)-300,yres-150,ts,1,1,1);
+        glDisable(GL_BLEND);
+	glColor4fv(blue);
+	if(player.vel>=0)			// Penalty for going offside
+		dist-=player.vel*24;
+	else
+		dist+=player.vel*24;
+}
+
 if(player.y<60)
 glColor4fv(white);
-dist1=82000-dist;
+
+dist1=82000-dist;				// Distance left for winning
 sprintf(st,"Distance Left : %d m",dist1/100);
-//printf("Lol %d\n",dist);
-   if(hundredths < 10)
-     sprintf(hunsec,"0%d",hundredths);
-   else
-     sprintf(hunsec,"%d",hundredths);
-   
+if(hundredths < 10)
+   sprintf(hunsec,"0%d",hundredths);
+else
+   sprintf(hunsec,"%d",hundredths);   
    if (minutes < 10 && seconds < 10)
      sprintf(minsec,"0%d:%d",minutes,40-seconds);
    else if(minutes < 10 && seconds >= 10)
@@ -221,12 +238,15 @@ sprintf(st,"Distance Left : %d m",dist1/100);
      sprintf(minsec,"%d:0%d",minutes,40-seconds);
    else
      sprintf(minsec,"%d:%d",minutes,40-seconds);
-   if(seconds>=30){
+
+if(seconds>=30)			// For red and white flashback
+{
 	if(seconds%2)
 		glColor4fv(red);
 	else
 		glColor4fv(white);
 }
+
    glEnable(GL_BLEND);
      fontprint(xres - (7*20), yres-32, minsec, 1,1,1);
      fontprint(xres - (2*20)+5, yres-18, hunsec, 1,0.5,1);
@@ -236,20 +256,25 @@ sprintf(st,"Distance Left : %d m",dist1/100);
   return 1;
 }
 
-int drawhud(){
+int drawhud()			// Drawing out HUD 
+{
   int speed;
   
   if(player.vel < 0)
     speed = -player.vel*36;
   else
     speed =  player.vel*36;
+
 if(tushar)
  firstperson();
-  speedo(speed);
+
+ speedo(speed);
  
   if(showfps)
     fpscount();
+
   radar(10);
+
   timer();
 
   return 1;
