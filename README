@@ -25,8 +25,10 @@ Aims to be similar to high speed racing games Star Wars / NFS.
    Wall Detection
    Skybox
    Maximum Speed
-   Winning and Loosing mode
+   Winning and Loosing mode (Gameplay implemented)
    First Person and Third Person interfacing
+   Warning messages shown when the ship goes offtrack
+   Blinking warning in last 10 seconds
    Fogging Effect
    Acceleration Variable
    Timings of redraw
@@ -47,13 +49,14 @@ Aims to be similar to high speed racing games Star Wars / NFS.
    Better Map Loading
    Debug Messages
    
-   HUD:
+   
+HUD:
     o Timer
     o Radar
     o Framerate
     o Speed
     o Distance Left
-    o Extreeme timer precision during last 10 seconds
+    o Timer precision increased during last 10 seconds
     o First person cockpit view
    
 
@@ -66,10 +69,12 @@ Aims to be similar to high speed racing games Star Wars / NFS.
     o FPS Toggle
     o Boundary detection 
 
+
    Messages:
     o Error	-> msg & exit
     o Warning	-> msg
     o Debug	-> info
+
 
 
  To Implement:
@@ -87,6 +92,7 @@ Aims to be similar to high speed racing games Star Wars / NFS.
    Lighting
    Reflections
    Jet Particle Effect
+
 
 ############
 # Gameplay #
