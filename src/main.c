@@ -80,8 +80,8 @@ int main(int argc, char **argv)
   course[3].description	= "A scenic drive through the canyons of NITK Surathkal";
   
   course[2].dir		= "sea";
-  course[2].name	= "Dune Derby";
-  course[2].description = "A frantic seaside race between the dunes on the NITK beach.";
+  course[2].name	= "Underwater sunshine";
+  course[2].description = "A frantic underwater race between the dunes on the NITK beach.";
   
   course[0].dir		= "city";
   course[0].name	= "City Speed";

@@ -24,6 +24,7 @@ Aims to be similar to high speed racing games Star Wars / NFS.
    Air resistance
    Wall Detection
    Skybox
+   Nitro added
    Maximum Speed
    Winning and Loosing mode (Gameplay implemented)
    First Person and Third Person interfacing
@@ -110,6 +111,7 @@ Left:		A
 Right:		D
 Air Brake:	Space
 Fullscreen:	F1
+Nitro:		N
 
 These keys can be changed by editing the config file, which
 is fairly self explanatory.

@@ -63,8 +63,7 @@ int menudraw1(void) 	// Different menu draw functions for different cases
   loadmenu();
   menulist[0] = "Start game";
   
-  menulist[1] = course[loadc].name;
-  
+  menulist[1] = course[loadc].name; 
   if(fullscreen == 1)
     menulist[2] = "Fullscreen";
   else
@@ -251,7 +250,11 @@ int menukeys(void) 		// Impact for pressing keys during menu
 	break;
     }
   }
-
+if(loadc==1)
+{
+mint=1;
+}
+ 
   return 1;
 }
 
