@@ -106,9 +106,11 @@ int		debug;
 int		audio;
 int		showfps;
 int 		flag;					//For reinitializing velocity and other stuff when escape is pressed
-
+int 		buf[10000000];				// To prevent stack smashing
 int		loadc;
-int		timestart;
+int		timestart;				// starting of the game time
+int 		mint;					// To give underwater effect
+int 		nitro;					// nitro boost flag
 int		done;					/* Game Boolean */
 int		menu;					/* Menu Boolean */
 int 		light;					/* Light Boolean */

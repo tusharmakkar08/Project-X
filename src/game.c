@@ -9,6 +9,8 @@
 #include "messages.h"
 #include "audio.h"
 #include "camera.h"
+#include "font.h"
+#include "ortho.h"
 
 #include "../data/models/ship.mdl"			/* Ship Model */
 
@@ -182,6 +184,12 @@ int gamekeys(void)					// Defining buttons of the game using SDL
 	    menu = 1;
 	    initmenu();
 	    break;
+	case SDLK_n:
+		if(nitro!=2)
+		{
+		nitro=1;
+		}		
+		break;
           default:
             break;
         }
@@ -240,7 +248,11 @@ int gamemove(void)		// Movement of ship is defined here
   player.accel  = 3    / scale * adjust;		/* Acceleration */
   player.rotmax = 360  / scale;				/* Maximum Rotational Velocity */
   player.rotacc = 10   / scale * adjust;		/* Rotational Acceleration */
-
+if(nitro==1)
+{
+	nitro=2;
+	player.vel+=player.dir*80.0/36;
+}
   if(player.rot >= 360)
     player.rot -= 360;
   if(player.rot <= 0)

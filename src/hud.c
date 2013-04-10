@@ -173,11 +173,13 @@ int timer()		// Timer implementation along with distance , winning strategy , di
    char  hunsec[5];
    char  st[30];			// For showing distance left
    char ts[100];			// For showing offtrack vehicle
-   
+  char toka[100];	// For showing nitro
+
   elapsed    = (float)(timenow - timestart) / 1000;
   minutes    = (int)  (elapsed)             / 60;
   seconds    = (int)  (elapsed)             % 60;
   hundredths = (int)  (elapsed * 100 + 0.5) % 100;
+sprintf(toka,"NITRO ACTIVATED");
 
 if(flag)			// For reinitializing stuff like velocity when escape button is pressed
 {
@@ -187,7 +189,7 @@ if(flag)			// For reinitializing stuff like velocity when escape button is press
 	player.vel=0;
 }
 
-if((seconds>=40)&&(dist<80000))		// Loosing condition
+if((seconds>=59)&&(dist<100000))		// Loosing condition
 {
 	printf("You Lose\n");
 	dist=0;
@@ -195,7 +197,7 @@ if((seconds>=40)&&(dist<80000))		// Loosing condition
 	return 1;
 }
 
-if(dist>=80000)				// Winning condition
+if(dist>=100000)				// Winning condition
 {
 	printf("You win\n");
 	dist=0;
@@ -207,7 +209,6 @@ if(player.vel>=0)			// Calculating distance
 	dist+=player.vel*12;
 else
 	dist-=player.vel*12;
-
 if(player.y>=60)				// Condition for showing that vehicle is going offtrack
 {
 	sprintf(ts,"Vehicle Off Track !!!");
@@ -220,39 +221,69 @@ if(player.y>=60)				// Condition for showing that vehicle is going offtrack
 	else
 		dist+=player.vel*24;
 }
-
-if(player.y<60)
+if((player.y<60)&&(mint!=1))
 glColor4fv(white);
-
-dist1=80000-dist;				// Distance left for winning
+if((player.y>60)&&(mint==1))
+glColor4fv(green);
+if((player.y<60)&&(mint==1))
+glColor4fv(blue);
+dist1=100000-dist;				// Distance left for winning
 sprintf(st,"Distance Left : %d m",dist1/100);
 if(hundredths < 10)
-   sprintf(hunsec,"0%d",hundredths);
+   sprintf(hunsec,"0%d",100-hundredths);
 else
-   sprintf(hunsec,"%d",hundredths);   
+   sprintf(hunsec,"%d",100-hundredths);   
    if (minutes < 10 && seconds < 10)
-     sprintf(minsec,"0%d:%d",minutes,40-seconds);
+     sprintf(minsec,"0%d:%d",minutes,58-seconds);
    else if(minutes < 10 && seconds >= 10)
-     sprintf(minsec,"0%d:%d",minutes,40-seconds);  
+     sprintf(minsec,"0%d:%d",minutes,58-seconds);  
    else if(minutes >= 10 && seconds < 10)
-     sprintf(minsec,"%d:0%d",minutes,40-seconds);
+     sprintf(minsec,"%d:0%d",minutes,58-seconds);
    else
-     sprintf(minsec,"%d:%d",minutes,40-seconds);
+     sprintf(minsec,"%d:%d",minutes,58-seconds);
 
-if(seconds>=30)			// For red and white flashback
+if(seconds>=50)			// For red and white flashback
 {
 	if(seconds%2)
 		glColor4fv(red);
-	else
+	else if(mint!=1)
 		glColor4fv(white);
+	else
+	glColor4fv(blue);
 }
-
+if(seconds<=49)
+{
    glEnable(GL_BLEND);
      fontprint(xres - (7*20), yres-32, minsec, 1,1,1);
      fontprint(xres - (2*20)+5, yres-18, hunsec, 1,0.5,1);
+	if(nitro)
+     fontprint(xres-(30*20)-600,yres-50,toka,1,0.5,1);
      fontprint(xres-(30*20)-300,yres-50,st,1,1,1);
    glDisable(GL_BLEND);
-
+}
+else
+{
+if(seconds%2==0)
+{
+ glEnable(GL_BLEND);
+     fontprint(xres/2-150, yres/2-100, minsec, 1,3,1);
+	if(nitro)
+     fontprint(xres-(30*20)-600,yres-50,toka,1,0.5,1);
+     fontprint(xres/2+140, yres/2, hunsec, 1,1.5,1);
+     fontprint(xres-(30*20)-300,yres-50,st,1,1,1);
+   glDisable(GL_BLEND);
+}
+else
+{
+	glEnable(GL_BLEND);
+     fontprint(xres/2-90, yres/2-100, minsec, 1,1.5,1);
+     fontprint(xres/2+50, yres/2-50, hunsec, 1,0.75,1);
+if(nitro)
+  fontprint(xres-(30*20)-600,yres-50,toka,1,0.5,1);
+     fontprint(xres-(30*20)-300,yres-50,st,1,1,1);
+   glDisable(GL_BLEND);
+}
+}
   return 1;
 }
 
@@ -274,7 +305,7 @@ if(tushar)
     fpscount();
 
   radar(10);
-
+ 
   timer();
 
   return 1;
