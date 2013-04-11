@@ -15,7 +15,7 @@ yres = 768
 bpp = 16
 
 # Enable Audio?
-audio = 0
+audio = 1
 
 # Show FPS Counter?
 showfps = 0

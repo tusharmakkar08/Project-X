@@ -75,13 +75,13 @@ int main(int argc, char **argv)
 {
 
   /* Load me from a text file */
-  course[3].dir		= "desert";
-  course[3].name	= "Canyon Racer";
-  course[3].description	= "A scenic drive through the canyons of NITK Surathkal";
+  course[2].dir		= "desert";
+  course[2].name	= "Canyon Racer";
+  course[2].description	= "A scenic drive through the canyons of NITK Surathkal";
   
-  course[2].dir		= "sea";
-  course[2].name	= "Underwater sunshine";
-  course[2].description = "A frantic underwater race between the dunes on the NITK beach.";
+  course[3].dir		= "sea";
+  course[3].name	= "Underwater sunshine";
+  course[3].description = "A frantic underwater race between the dunes on the NITK beach.";
   
   course[0].dir		= "city";
   course[0].name	= "City Speed";
