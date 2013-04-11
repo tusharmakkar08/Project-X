@@ -250,11 +250,14 @@ int menukeys(void) 		// Impact for pressing keys during menu
 	break;
     }
   }
-if(loadc==1)
+if(loadc==3)
 {
 mint=1;
 }
- 
+else
+{
+mint=0;
+}
   return 1;
 }
 
